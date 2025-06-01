@@ -19,8 +19,8 @@ import { toast } from "sonner";
 import { type Post } from './posts-table'; // Make sure Post type is exported from posts-table.tsx
 
 interface EditPostsFormProps extends React.HTMLAttributes<HTMLDivElement> {
-  postToEdit: Post | null; // Post can be null if no post is selected
-  onCancel?: () => void;
+    postToEdit: Post | null; // Post can be null if no post is selected
+    onCancel?: () => void;
 }
 
 type PostFormValues = {
@@ -70,53 +70,53 @@ export default function EditPostsForm({ className, postToEdit, onCancel, ...prop
         });
     };
 
-  // Do not render the form if no post is selected for editing
-  if (!postToEdit) {
-    return null;
-  }
+    // Do not render the form if no post is selected for editing
+    if (!postToEdit) {
+        return null;
+    }
 
-  return (
-    <div className={className} {...props}>
-      <form onSubmit={handleSubmit}>
-        <CardHeader className="mb-4">
-          <CardTitle>Edit Post</CardTitle>
-          <CardDescription>
-            Update the details for post: "{postToEdit.title}"
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <div className="grid w-full items-center gap-4">
-            <div className="flex flex-col space-y-1.5">
-              <Label htmlFor="edit-title">Title</Label>
-              <Input
-                id="edit-title"
-                placeholder="Enter post title"
-                value={data.title}
-                onChange={(e) => setData('title', e.target.value)}
-              />
-              <InputError message={errors.title} />
-            </div>
-            <div className="flex flex-col space-y-1.5 mb-4">
-              <Label htmlFor="edit-body">Body</Label>
-              <Textarea
-                id="edit-body"
-                placeholder="Enter post body"
-                rows={4}
-                value={data.body}
-                onChange={(e) => setData('body', e.target.value)}
-              />
-              <InputError message={errors.body} />
-            </div>
-          </div>
-        </CardContent>
-        <CardFooter className="flex justify-between">
-          <Button variant="outline" type="button" onClick={onCancel}>Cancel</Button>
-          <Button type="submit" disabled={processing}>
-              {processing && <LoaderCircle className="h-4 w-4 animate-spin mr-2" />}
-              Update Post
-          </Button>
-        </CardFooter>
-      </form>
-    </div>
-  );
+    return (
+        <div className={className} {...props}>
+            <form onSubmit={handleSubmit}>
+                <CardHeader className="mb-4">
+                    <CardTitle>Edit Post</CardTitle>
+                    <CardDescription>
+                        Update the details for post: "{postToEdit.title}"
+                    </CardDescription>
+                </CardHeader>
+                <CardContent>
+                    <div className="grid w-full items-center gap-4">
+                        <div className="flex flex-col space-y-1.5">
+                            <Label htmlFor="edit-title">Title</Label>
+                            <Input
+                                id="edit-title"
+                                placeholder="Enter post title"
+                                value={data.title}
+                                onChange={(e) => setData('title', e.target.value)}
+                            />
+                            <InputError message={errors.title} />
+                        </div>
+                        <div className="flex flex-col space-y-1.5 mb-4">
+                            <Label htmlFor="edit-body">Body</Label>
+                            <Textarea
+                                id="edit-body"
+                                placeholder="Enter post body"
+                                rows={4}
+                                value={data.body}
+                                onChange={(e) => setData('body', e.target.value)}
+                            />
+                            <InputError message={errors.body} />
+                        </div>
+                    </div>
+                </CardContent>
+                <CardFooter className="flex justify-between">
+                    <Button variant="outline" type="button" onClick={onCancel}>Cancel</Button>
+                    <Button type="submit" disabled={processing}>
+                        {processing && <LoaderCircle className="h-4 w-4 animate-spin mr-2" />}
+                        Update Post
+                    </Button>
+                </CardFooter>
+            </form>
+        </div>
+    );
 }
