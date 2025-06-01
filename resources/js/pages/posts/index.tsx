@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { PlaceholderPattern } from '@/components/ui/placeholder-pattern';
 import AppLayout from '@/layouts/app-layout';
 import { type BreadcrumbItem } from '@/types';
 import { Head } from '@inertiajs/react';
@@ -10,10 +9,6 @@ import { Button } from '@/components/ui/button';
 import {
   Dialog,
   DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogFooter,
 } from '@/components/ui/dialog';
 
 interface PostsIndexProps {
@@ -56,7 +51,7 @@ export default function PostsIndex({ posts }: PostsIndexProps) {
         {/* Edit Post Modal */}
         <Dialog open={isEditModalOpen} onOpenChange={(open) => {
             setIsEditModalOpen(open);
-            if (!open) setSelectedPost(null); 
+            if (!open) setSelectedPost(null);
         }}>
             <DialogContent className="sm:max-w-[425px]">
                 <EditPostsForm

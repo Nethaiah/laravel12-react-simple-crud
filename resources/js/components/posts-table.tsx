@@ -1,7 +1,5 @@
 "use client";
 
-import { Link } from "@inertiajs/react";
-
 import {
     ColumnDef,
     ColumnFiltersState,
@@ -71,7 +69,6 @@ interface PostsTableProps {
 }
 
 export default function PostsTable({ posts, onEditClick }: PostsTableProps) {
-    const [searchQuery, setSearchQuery] = React.useState<string>();
     const [sorting, setSorting] = React.useState<SortingState>([]);
     const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([]);
     const [columnVisibility, setColumnVisibility] = React.useState<VisibilityState>({});
