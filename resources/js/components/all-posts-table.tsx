@@ -12,7 +12,7 @@ import {
     getSortedRowModel,
     useReactTable,
 } from "@tanstack/react-table";
-import { ArrowUpDown, ChevronDown, Columns3, RefreshCcw } from "lucide-react";
+import { ArrowUpDown, ChevronDown } from "lucide-react";
 import * as React from "react";
 
 import { Button } from "@/components/ui/button";
