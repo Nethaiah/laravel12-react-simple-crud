@@ -42,24 +42,24 @@ export default function PostsIndex({ posts }: PostsIndexProps) {
                 />
             </div>
             {/* Add Post Modal */}
-        <Dialog open={isAddModalOpen} onOpenChange={setIsAddModalOpen}>
-            <DialogContent className="sm:max-w-[425px]">
-                <AddPostsForm onCancel={() => setIsAddModalOpen(false)} />
-            </DialogContent>
-        </Dialog>
+            <Dialog open={isAddModalOpen} onOpenChange={setIsAddModalOpen}>
+                <DialogContent className="sm:max-w-[425px]">
+                    <AddPostsForm onCancel={() => setIsAddModalOpen(false)} />
+                </DialogContent>
+            </Dialog>
 
-        {/* Edit Post Modal */}
-        <Dialog open={isEditModalOpen} onOpenChange={(open) => {
-            setIsEditModalOpen(open);
-            if (!open) setSelectedPost(null);
-        }}>
-            <DialogContent className="sm:max-w-[425px]">
-                <EditPostsForm
-                    postToEdit={selectedPost}
-                    onCancel={() => setIsEditModalOpen(false)}
-                />
-            </DialogContent>
-        </Dialog>
+            {/* Edit Post Modal */}
+            <Dialog open={isEditModalOpen} onOpenChange={(open) => {
+                setIsEditModalOpen(open);
+                if (!open) setSelectedPost(null);
+            }}>
+                <DialogContent className="sm:max-w-[425px]">
+                    <EditPostsForm
+                        postToEdit={selectedPost}
+                        onCancel={() => setIsEditModalOpen(false)}
+                    />
+                </DialogContent>
+            </Dialog>
         </AppLayout>
     );
 }

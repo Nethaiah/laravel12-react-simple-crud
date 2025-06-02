@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Posts;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 use JonPurvis\Squeaky\Rules\Clean;
 
@@ -15,7 +16,7 @@ class PostsController extends Controller
     public function index()
     {
         return Inertia::render('posts/index', [
-            'posts' => Posts::latest()->get(),
+            'posts' => Posts::where('user_id', Auth::id())->latest()->get(),
         ]);
     }
 
@@ -37,7 +38,11 @@ class PostsController extends Controller
             'body' => ['required', 'string', 'max:255', new Clean],
         ]);
 
-        $post = Posts::create($request->all());
+        $post = Posts::create([
+            'title' => $request->title,
+            'body' => $request->body,
+            'user_id' => Auth::id(),
+        ]);
 
         return redirect()->route('posts.index');
     }
@@ -68,7 +73,11 @@ class PostsController extends Controller
             'body' => ['required', 'string', 'max:255', new Clean],
         ]);
 
-        $post->update($request->all());
+        $post->update([
+            'title' => $request->title,
+            'body' => $request->body,
+            'user_id' => Auth::id(),
+        ]);
 
         return redirect()->route('posts.index');
     }

@@ -15,6 +15,7 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         // User::factory(10)->create();
+        
 
         // User::factory()->create([
         //     'name' => 'Test User',
@@ -22,6 +23,7 @@ class DatabaseSeeder extends Seeder
         // ]);
 
         Posts::factory()->count(20)->create([
+            "user_id"=> "1",
             'title' => fake()->sentence(6),
             'body' => fake()->paragraph(10),
         ]);
