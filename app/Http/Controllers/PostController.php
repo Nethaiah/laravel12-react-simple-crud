@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Posts;
+use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 use JonPurvis\Squeaky\Rules\Clean;
 
-class PostsController extends Controller
+class PostController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +16,7 @@ class PostsController extends Controller
     public function index()
     {
         return Inertia::render('posts/index', [
-            'posts' => Posts::where('user_id', Auth::id())->latest()->get(),
+            'posts' => Post::where('user_id', Auth::id())->latest()->get(),
         ]);
     }
 
@@ -38,7 +38,7 @@ class PostsController extends Controller
             'body' => ['required', 'string', 'max:255', new Clean],
         ]);
 
-        $post = Posts::create([
+        $post = Post::create([
             'title' => $request->title,
             'body' => $request->body,
             'user_id' => Auth::id(),
@@ -50,7 +50,7 @@ class PostsController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Posts $posts)
+    public function show(Post $post)
     {
         //
     }
@@ -58,7 +58,7 @@ class PostsController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Posts $posts)
+    public function edit(Post $post)
     {
         //
     }
@@ -66,7 +66,7 @@ class PostsController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Posts $post)
+    public function update(Request $request, Post $post)
     {
         $request->validate([
             'title' => ['required', 'string', 'max:25', new Clean],
@@ -85,7 +85,7 @@ class PostsController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Posts $post)
+    public function destroy(Post $post)
     {
         $post->delete();
 
