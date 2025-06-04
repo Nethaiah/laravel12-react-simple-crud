@@ -33,18 +33,17 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+        $validated = $request->validate([
             'title' => ['required', 'string', 'max:25', new Clean],
             'body' => ['required', 'string', 'max:255', new Clean],
         ]);
 
         $post = Post::create([
-            'title' => $request->title,
-            'body' => $request->body,
+            ...$validated,
             'user_id' => Auth::id(),
         ]);
 
-        return redirect()->route('posts.index');
+        return to_route('posts.index');
     }
 
     /**
@@ -68,18 +67,17 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        $request->validate([
+        $validated = $request->validate([
             'title' => ['required', 'string', 'max:25', new Clean],
             'body' => ['required', 'string', 'max:255', new Clean],
         ]);
 
         $post->update([
-            'title' => $request->title,
-            'body' => $request->body,
+            ...$validated,
             'user_id' => Auth::id(),
         ]);
 
-        return redirect()->route('posts.index');
+        return to_route('posts.index');
     }
 
     /**
@@ -89,6 +87,6 @@ class PostController extends Controller
     {
         $post->delete();
 
-        return redirect()->route('posts.index');
+        return to_route('posts.index');
     }
 }
